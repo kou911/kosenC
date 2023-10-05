@@ -12,6 +12,7 @@ public class mark : MonoBehaviour
     public float waittime;
     public float score;
     public GameObject score_object;
+    public int key;
 
     // Start is called before the first frame update
     void Start()
@@ -25,7 +26,7 @@ public class mark : MonoBehaviour
 
         Text scoretext = score_object.GetComponent<Text> ();
 
-        if(Input.GetKey(KeyCode.A) && title.enabled){
+        if(Input.GetKeyDown(KeyCode.A) && title.enabled){
             title.enabled = false;
             rnd = Random.Range(2.00f, 5.00f);
             scoretext.text = "";
@@ -39,7 +40,7 @@ public class mark : MonoBehaviour
             go.enabled = true;
         }
 
-        if(Input.GetKey(KeyCode.S) && !title.enabled){
+        if(Input.GetKeyDown(KeyCode.S)  && !title.enabled){
             title.enabled = true;
 
             if(go.enabled){
