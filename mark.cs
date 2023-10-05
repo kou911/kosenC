@@ -28,6 +28,7 @@ public class mark : MonoBehaviour
         if(Input.GetKey(KeyCode.A) && title.enabled){
             title.enabled = false;
             rnd = Random.Range(2.00f, 5.00f);
+            scoretext.text = "";
         }
 
         if(!title.enabled){
