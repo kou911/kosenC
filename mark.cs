@@ -43,7 +43,7 @@ public class mark : MonoBehaviour
             title.enabled = true;
 
             if(go.enabled){
-                score = waittime - rnd;
+                score = Mathf.Floor((waittime - rnd + 0.0005f)*1000f)/1000f;
                 scoretext.text = score.ToString() + "秒";
             }
 
