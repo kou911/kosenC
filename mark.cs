@@ -55,14 +55,17 @@ public class mark : MonoBehaviour
 	        }
         }
 
-        if(Input.GetKeyDown(KeyCode.A)){
-            getkey = 1;
-        }
-        if(Input.GetKeyDown(KeyCode.S)){
-            getkey = 2;
-        }
-        if(Input.GetKeyDown(KeyCode.D)){
-            getkey = 3;
+
+        if(go.enabled){
+            if(Input.GetKeyDown(KeyCode.A)){
+                getkey = 1;
+            }
+            if(Input.GetKeyDown(KeyCode.S)){
+                getkey = 2;
+            }
+            if(Input.GetKeyDown(KeyCode.D)){
+                getkey = 3;
+            }
         }
 
         if(Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D) && !title.enabled){
@@ -74,7 +77,7 @@ public class mark : MonoBehaviour
                 keytext.text = "";
             }
 
-            else{
+            else if(){
                 scoretext.text = "失敗";
                 keytext.text = "";
             }
