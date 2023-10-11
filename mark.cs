@@ -68,16 +68,14 @@ public class mark : MonoBehaviour
             }
         }
 
-        if(Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D) && !title.enabled){
+        if((Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D)) && !title.enabled){
             title.enabled = true;
 
             if(go.enabled && getkey == key){
                 score = Mathf.Floor((waittime - rnd + 0.0005f)*1000f)/1000f;
                 scoretext.text = score.ToString() + "秒";
                 keytext.text = "";
-            }
-
-            else if(){
+            }else{
                 scoretext.text = "失敗";
                 keytext.text = "";
             }
