@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class mark : MonoBehaviour
 {
@@ -10,27 +11,25 @@ public class mark : MonoBehaviour
     public float rnd;
     public float waittime;
     public float score;
-    public GameObject score_object;
     public GameObject needkey;
+    public static string result;
     public int key;
     public int getkey;
 
     // Start is called before the first frame update
     void Start()
     {
-        Text scoretext = score_object.GetComponent<Text> ();
         waittime=0;
         rnd = Random.Range(2.00f, 5.00f);
         key = Random.Range(1,4);
-        scoretext.text = "";
+        result = "";
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        Text scoretext = score_object.GetComponent<Text> ();
         Text keytext = needkey.GetComponent<Text> ();
+        RectTransform rect = needkey.GetComponent <RectTransform> ();
 
         waittime += Time.deltaTime;
 
@@ -38,13 +37,16 @@ public class mark : MonoBehaviour
             go.enabled = true;
             switch (key) {
 		        case 1:
+                    rect.localPosition = new Vector3(-100, 0, 0);
 			        keytext.text = "A";
 			        break;
 		        case 2:
-			        keytext.text = "        S";
+                    rect.localPosition = new Vector3(0, 0, 0);
+			        keytext.text = "S";
 			        break;
                 case 3:
-			        keytext.text = "                D";
+                    rect.localPosition = new Vector3(100, 0, 0);
+			        keytext.text = "D";
 			        break;
 	        }
         }
@@ -65,10 +67,10 @@ public class mark : MonoBehaviour
         if((Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D))){
             if(go.enabled && getkey == key){
                 score = Mathf.Floor((waittime - rnd + 0.0005f)*1000f)/1000f;
-                scoretext.text = score.ToString() + "秒";
+                result = score.ToString() + "秒";
                 keytext.text = "";
             }else{
-                scoretext.text = "失敗";
+                result = "失敗";
                 keytext.text = "";
             }
 
