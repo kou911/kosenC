@@ -10,19 +10,23 @@ public class mark : MonoBehaviour
     public SpriteRenderer go;
     public float rnd;
     public float waittime;
-    public float score;
+    public static float score;
     public GameObject needkey;
-    public static string result;
+    public float result;
     public int key;
     public int getkey;
+
+    public static float getscore() {
+        return score;
+    }
 
     // Start is called before the first frame update
     void Start()
     {
         waittime=0;
+        go.enabled = false;
         rnd = Random.Range(2.00f, 5.00f);
         key = Random.Range(1,4);
-        result = "";
     }
 
     // Update is called once per frame
@@ -67,16 +71,10 @@ public class mark : MonoBehaviour
         if((Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D))){
             if(go.enabled && getkey == key){
                 score = Mathf.Floor((waittime - rnd + 0.0005f)*1000f)/1000f;
-                result = score.ToString() + "秒";
-                keytext.text = "";
             }else{
-                result = "失敗";
-                keytext.text = "";
+                score = -1;
             }
-
-            waittime = 0;
-            go.enabled = false;
+            SceneManager.LoadScene("3_result");
         }
-
     }
 }
