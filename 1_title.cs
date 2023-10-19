@@ -23,10 +23,10 @@ public class title : MonoBehaviour
         Text start = starttext.GetComponent<Text>();
         Text ranking = rankingtext.GetComponent<Text>();
 
-        if(Input.GetKeyDown(KeyCode.UpArrow)){
+        if(Input.GetKey(KeyCode.UpArrow)){
             menu = !menu;
         }
-        if(Input.GetKeyDown(KeyCode.DownArrow)){
+        if(Input.GetKey(KeyCode.DownArrow)){
             menu = !menu;
         }
 
@@ -38,7 +38,7 @@ public class title : MonoBehaviour
             ranking.color = new Color(1.0f, 0.0f, 0.0f, 1.0f);
         }
 
-        if(Input.GetKeyDown(KeyCode.Return)){
+        if(Input.GetKey(KeyCode.Return)){
             if(menu){
                 SceneManager.LoadScene("2_play");
             }

@@ -8,6 +8,8 @@ public class result : MonoBehaviour
 {
 
     public GameObject scoreobject;
+    public GameObject startobject;
+    public GameObject titleobject;
     public float score;
     public bool menu;
 
@@ -26,26 +28,30 @@ public class result : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.LeftArrow)){
+        Text start = startobject.GetComponent<Text> ();
+        Text title = titleobject.GetComponent<Text> ();
+
+        if(Input.GetKey(KeyCode.UpArrow)){
             menu = !menu;
+            print("a");
         }
-        if(Input.GetKeyDown(KeyCode.RightArrow)){
+        if(Input.GetKey(KeyCode.DownArrow)){
             menu = !menu;
         }
 
         if(menu){
             start.color = new Color(1.0f, 0.0f, 0.0f, 1.0f);
-            ranking.color = new Color(0.0f, 0.0f, 0.0f, 1.0f);
+            title.color = new Color(0.0f, 0.0f, 0.0f, 1.0f);
         }else{
             start.color = new Color(0.0f, 0.0f, 0.0f, 1.0f);
-            ranking.color = new Color(1.0f, 0.0f, 0.0f, 1.0f);
+            title.color = new Color(1.0f, 0.0f, 0.0f, 1.0f);
         }
 
-        if(Input.GetKeyDown(KeyCode.Return)){
+        if(Input.GetKey(KeyCode.Return)){
             if(menu){
                 SceneManager.LoadScene("2_play");
             }else {
-                SceneManagement.LoadScene("1_title");
+                SceneManager.LoadScene("1_title");
             }
         }
     }
