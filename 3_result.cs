@@ -31,11 +31,7 @@ public class result : MonoBehaviour
         Text start = startobject.GetComponent<Text> ();
         Text title = titleobject.GetComponent<Text> ();
 
-        if(Input.GetKey(KeyCode.UpArrow)){
-            menu = !menu;
-            print("a");
-        }
-        if(Input.GetKey(KeyCode.DownArrow)){
+        if(Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow)){
             menu = !menu;
         }
 
@@ -47,7 +43,7 @@ public class result : MonoBehaviour
             title.color = new Color(1.0f, 0.0f, 0.0f, 1.0f);
         }
 
-        if(Input.GetKey(KeyCode.Return)){
+        if(Input.GetKeyDown(KeyCode.Return)){
             if(menu){
                 SceneManager.LoadScene("2_play");
             }else {
