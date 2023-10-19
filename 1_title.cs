@@ -9,7 +9,7 @@ public class title : MonoBehaviour
 
     public GameObject starttext;
     public GameObject rankingtext;
-    public int menu;
+    public bool menu;
 
     // Start is called before the first frame update
     void Start()
@@ -24,22 +24,22 @@ public class title : MonoBehaviour
         Text ranking = rankingtext.GetComponent<Text>();
 
         if(Input.GetKeyDown(KeyCode.UpArrow)){
-            menu = 1;
+            menu = !menu;
         }
         if(Input.GetKeyDown(KeyCode.DownArrow)){
-            menu = 2;
+            menu = !menu;
         }
 
-        if(menu == 1){
+        if(menu){
             start.color = new Color(1.0f, 0.0f, 0.0f, 1.0f);
             ranking.color = new Color(0.0f, 0.0f, 0.0f, 1.0f);
-        }else if(menu == 2){
+        }else{
             start.color = new Color(0.0f, 0.0f, 0.0f, 1.0f);
             ranking.color = new Color(1.0f, 0.0f, 0.0f, 1.0f);
         }
 
         if(Input.GetKeyDown(KeyCode.Return)){
-            if(menu == 1){
+            if(menu){
                 SceneManager.LoadScene("2_play");
             }
         }

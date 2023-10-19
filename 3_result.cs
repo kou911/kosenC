@@ -9,6 +9,7 @@ public class result : MonoBehaviour
 
     public GameObject scoreobject;
     public float score;
+    public bool menu;
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +26,27 @@ public class result : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(Input.GetKeyDown(KeyCode.LeftArrow)){
+            menu = !menu;
+        }
+        if(Input.GetKeyDown(KeyCode.RightArrow)){
+            menu = !menu;
+        }
 
+        if(menu){
+            start.color = new Color(1.0f, 0.0f, 0.0f, 1.0f);
+            ranking.color = new Color(0.0f, 0.0f, 0.0f, 1.0f);
+        }else{
+            start.color = new Color(0.0f, 0.0f, 0.0f, 1.0f);
+            ranking.color = new Color(1.0f, 0.0f, 0.0f, 1.0f);
+        }
+
+        if(Input.GetKeyDown(KeyCode.Return)){
+            if(menu){
+                SceneManager.LoadScene("2_play");
+            }else {
+                SceneManagement.LoadScene("1_title");
+            }
+        }
     }
 }
