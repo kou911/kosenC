@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class getranking : MonoBehaviour{
-    private var RANKING_PREF_KEY = 'ranking';
+    private var RANKING_PREF_KEY = "ranking";
     //ランキングの表示数
     private var RANKING_NUM = 10;
     //
@@ -15,7 +15,7 @@ public class getranking : MonoBehaviour{
         var ranking = PlayerPrefs.GetString(RANKING_PREF_KEY);
 
         if (ranking.length > 0) {
-            var score = ranking.Split(',');
+            var score = ranking.Split(",");
             ranking = new float[RANKING_NUM];
             for (var i=0; i<score.length && i<RANKING_NUM; i++) {
                 ranking[i] = parseFloat(score[i]);
@@ -39,7 +39,7 @@ public class getranking : MonoBehaviour{
             ranking[0] = new_score;
         }
         //コンマで連結・playerprefsに保存
-        var ranking_string = Array(ranking).join(',');
+        var ranking_string = Array(ranking).join(",");
         PlayerPrefs.SetString(RANKING_PREF_KEY, ranking_string);
     }
 
