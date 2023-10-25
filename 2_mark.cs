@@ -7,56 +7,91 @@ using UnityEngine.SceneManagement;
 public class mark : MonoBehaviour
 {
 
-    public SpriteRenderer go;
+    public Renderer go;
+    public Renderer white;
     public float rnd;
     public float waittime;
     public static float score;
-    public GameObject needkey;
+    public GameObject wood;
     public float result;
     public int key;
     public int getkey;
+    public Sprite wait;
+    public Sprite cut;
+    public Sprite end;
+    public SpriteRenderer player;
+    public Sprite target;
+    public Sprite becut;
+    public SpriteRenderer woodsprite;
 
     public static float getscore() {
         return score;
     }
 
+    IEnumerator cutin()
+	{
+        white.enabled = true;
+        switch (getkey) {
+    	    case 1:
+                transform.position = new Vector3(6.5f, 3.6f, 0);
+	            break;
+            case 2:
+                transform.position = new Vector3(6.5f, 0, 0);
+	            break;
+            case 3:
+                transform.position = new Vector3(6.5f, -3.6f, 0);
+	            break;
+        }
+        player.sprite = cut;
+        yield return new WaitForSeconds (0.1f);
+        white.enabled = false;
+        yield return new WaitForSeconds (1f);
+        player.sprite = end;
+        yield return new WaitForSeconds (0.5f);
+        if(score == -1){
+            transform.eulerAngles = new Vector3(0,0,-90f);
+            player.sprite = wait;
+        }else {
+            woodsprite.sprite = becut;
+        }
+        yield return new WaitForSeconds (0.5f);
+        SceneManager.LoadScene("3_result");
+	}
+
     // Start is called before the first frame update
     void Start()
     {
+        getkey = 0;
+        score = 0;
+        white.enabled = false;
         waittime=0;
         go.enabled = false;
         rnd = Random.Range(2.00f, 5.00f);
         key = Random.Range(1,4);
+        switch (key) {
+		    case 1:
+                wood.transform.position = new Vector3(4, 3.7f, 0);
+	            break;
+            case 2:
+                wood.transform.position = new Vector3(4, 0, 0);
+		        break;
+            case 3:
+                wood.transform.position = new Vector3(4, -3.7f, 0);
+		        break;
+	    }
     }
 
     // Update is called once per frame
     void Update()
     {
-        Text keytext = needkey.GetComponent<Text> ();
-        RectTransform rect = needkey.GetComponent <RectTransform> ();
-
         waittime += Time.deltaTime;
 
-        if(waittime >= rnd){
+        if(waittime >= rnd && score == 0){
             go.enabled = true;
-            switch (key) {
-		        case 1:
-                    rect.localPosition = new Vector3(-100, 0, 0);
-			        keytext.text = "A";
-			        break;
-		        case 2:
-                    rect.localPosition = new Vector3(0, 0, 0);
-			        keytext.text = "S";
-			        break;
-                case 3:
-                    rect.localPosition = new Vector3(100, 0, 0);
-			        keytext.text = "D";
-			        break;
-	        }
         }
 
 
-        if(go.enabled){
+        if(getkey == 0){
             if(Input.GetKeyDown(KeyCode.A)){
                 getkey = 1;
             }
@@ -74,7 +109,7 @@ public class mark : MonoBehaviour
             }else{
                 score = -1;
             }
-            SceneManager.LoadScene("3_result");
+            StartCoroutine("cutin");
         }
     }
 }

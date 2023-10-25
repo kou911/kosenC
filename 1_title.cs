@@ -28,15 +28,15 @@ public class title : MonoBehaviour
         }
 
         if(menu){
-            start.color = new Color(1.0f, 0.0f, 0.0f, 1.0f);
-            ranking.color = new Color(0.0f, 0.0f, 0.0f, 1.0f);
-        }else{
             start.color = new Color(0.0f, 0.0f, 0.0f, 1.0f);
             ranking.color = new Color(1.0f, 0.0f, 0.0f, 1.0f);
+        }else{
+            start.color = new Color(1.0f, 0.0f, 0.0f, 1.0f);
+            ranking.color = new Color(0.0f, 0.0f, 0.0f, 1.0f);
         }
 
         if(Input.GetKeyDown(KeyCode.Return)){
-            if(menu){
+            if(!menu){
                 SceneManager.LoadScene("2_play");
             }
         }
