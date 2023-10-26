@@ -33,13 +33,13 @@ public class mark : MonoBehaviour
         white.enabled = true;
         switch (getkey) {
     	    case 1:
-                transform.position = new Vector3(6.5f, 3.6f, 0);
+                transform.position = new Vector3(6.5f, 1.6f, 0);
 	            break;
             case 2:
                 transform.position = new Vector3(6.5f, 0, 0);
 	            break;
             case 3:
-                transform.position = new Vector3(6.5f, -3.6f, 0);
+                transform.position = new Vector3(6.5f, -5.6f, 0);
 	            break;
         }
         player.sprite = cut;
@@ -61,6 +61,8 @@ public class mark : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        transform.position = new Vector3(-6f, -1.4f, 0);
+        player.sprite = wait;
         getkey = 0;
         score = 0;
         white.enabled = false;
