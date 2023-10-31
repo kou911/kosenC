@@ -23,6 +23,9 @@ public class mark : MonoBehaviour
     public Sprite target;
     public Sprite becut;
     public SpriteRenderer woodsprite;
+    public AudioClip cuting;
+    public AudioClip miss;
+    AudioSource audioSource;
 
     public static float getscore() {
         return score;
@@ -43,6 +46,7 @@ public class mark : MonoBehaviour
 	            break;
         }
         player.sprite = cut;
+        audioSource.PlayOneShot(cuting);
         yield return new WaitForSeconds (0.1f);
         white.enabled = false;
         yield return new WaitForSeconds (1f);
@@ -51,6 +55,7 @@ public class mark : MonoBehaviour
         if(score == -1){
             transform.eulerAngles = new Vector3(0,0,-90f);
             player.sprite = wait;
+            audioSource.PlayOneShot(miss);
         }else {
             woodsprite.sprite = becut;
         }
@@ -61,6 +66,7 @@ public class mark : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         transform.position = new Vector3(-6f, -1.4f, 0);
         player.sprite = wait;
         getkey = 0;
