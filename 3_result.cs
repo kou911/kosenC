@@ -16,7 +16,7 @@ public class result : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        score = mark.getscore();
+            score = mark.getscore();
         Text scoretext = scoreobject.GetComponent<Text> ();
         if(score == -1){
             scoretext.text = "失敗";
