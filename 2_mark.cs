@@ -39,7 +39,7 @@ public class mark : MonoBehaviour
                 transform.position = new Vector3(6.5f, 2f, 0);
 	            break;
             case 2:
-                transform.position = new Vector3(6.5f, 0, 0);
+                transform.position = new Vector3(6.5f, -1.4f, 0);
 	            break;
             case 3:
                 transform.position = new Vector3(6.5f, -5f, 0);
@@ -52,7 +52,7 @@ public class mark : MonoBehaviour
         yield return new WaitForSeconds (1f);
         player.sprite = end;
         yield return new WaitForSeconds (0.5f);
-        if(score == -1){
+        if(score == 1000){
             transform.eulerAngles = new Vector3(0,0,-90f);
             player.sprite = wait;
             audioSource.PlayOneShot(miss);
@@ -94,8 +94,9 @@ public class mark : MonoBehaviour
     {
         waittime += Time.deltaTime;
 
-        if(waittime >= rnd && score == 0){
+        if(waittime >= rnd && score == 0 && !go.enabled){
             go.enabled = true;
+            audioSource.PlayOneShot(miss);
         }
 
 
@@ -113,9 +114,9 @@ public class mark : MonoBehaviour
 
         if((Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D))){
             if(go.enabled && getkey == key){
-                score = Mathf.Floor((waittime - rnd + 0.0005f)*1000f)/1000f;
+                score = waittime - rnd;
             }else{
-                score = -1;
+                score = 1000;
             }
             StartCoroutine("cutin");
         }

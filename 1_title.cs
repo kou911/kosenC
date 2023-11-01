@@ -38,6 +38,8 @@ public class title : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Return)){
             if(!menu){
                 SceneManager.LoadScene("2_play");
+            }else {
+                SceneManager.LoadScene("4_ranking");
             }
         }
     }
